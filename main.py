@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
 from app.routers import auth, farmers, crops, weather, marketplace
 import traceback
@@ -8,6 +9,14 @@ app = FastAPI(
     title="KisanConnect API",
     description="AgriTech platform for Indian farmers",
     version="1.0.0"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.middleware("http")

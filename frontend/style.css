@@ -1,0 +1,256 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #f5f5f5;
+    color: #333;
+}
+
+/* NAVBAR */
+nav {
+    background: #2d6a4f;
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 24px;
+    font-size: 15px;
+}
+
+.nav-links a:hover {
+    color: #b7e4c7;
+}
+
+/* HERO */
+.hero {
+    background: linear-gradient(135deg, #2d6a4f, #52b788);
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero h1 {
+    font-size: 56px;
+    margin-bottom: 16px;
+}
+
+.hero p {
+    font-size: 22px;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.btn-green {
+    background: white;
+    color: #2d6a4f;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.btn-outline {
+    border: 2px solid white;
+    color: white;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* FEATURES */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    padding: 60px 40px;
+    background: white;
+}
+
+.feature-card {
+    background: #f0fdf4;
+    border: 1px solid #b7e4c7;
+    border-radius: 12px;
+    padding: 32px 24px;
+    text-align: center;
+}
+
+.feature-card h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    color: #2d6a4f;
+}
+
+.feature-card p {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* SECTIONS */
+.section {
+    padding: 60px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.section h2 {
+    font-size: 32px;
+    color: #2d6a4f;
+    margin-bottom: 8px;
+}
+
+.section p {
+    color: #666;
+    margin-bottom: 24px;
+}
+
+/* INPUT GROUP */
+.input-group {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.input-group button, button {
+    background: #2d6a4f;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background: #1b4332;
+}
+
+/* RESULT BOX */
+.result-box {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 24px;
+    display: none;
+}
+
+/* CROPS GRID */
+.crops-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.crop-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.crop-card h3 {
+    color: #2d6a4f;
+    margin-bottom: 8px;
+}
+
+.crop-card p {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.crop-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2d6a4f;
+    margin-top: 8px;
+}
+
+/* FORM BOX */
+.form-box {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 32px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-box input {
+    padding: 12px 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.form-box button {
+    padding: 14px;
+    font-size: 16px;
+}
+
+/* FOOTER */
+footer {
+    background: #2d6a4f;
+    color: white;
+    text-align: center;
+    padding: 32px;
+    margin-top: 60px;
+}
+
+footer p {
+    margin-bottom: 8px;
+    opacity: 0.9;
+}
+
+/* SUCCESS / ERROR */
+.success {
+    color: #2d6a4f;
+    font-weight: bold;
+    padding: 12px;
+    background: #f0fdf4;
+    border-radius: 8px;
+}
+
+.error {
+    color: #dc2626;
+    font-weight: bold;
+    padding: 12px;
+    background: #fef2f2;
+    border-radius: 8px;
+}

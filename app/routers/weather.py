@@ -4,21 +4,48 @@ from app.config import settings
 
 router = APIRouter()
 
-@router.get("/{city}")
-async def get_weather(city: str):
-    url = f"https://api.openweathermap.org/data/2.5/weather"
-    params = {
-        "q": city,
-        "appid": settings.WEATHER_API_KEY,
-        "units": "metric"
-    }
+@router.get("/{location}")
+async def get_weather(location: str):
     async with httpx.AsyncClient() as client:
-        response = await client.get(url, params=params)
-        if response.status_code != 200:
-            raise HTTPException(status_code=404, detail=f"City not found: {response.text}")
-        data = response.json()
+        
+        # Step 1 — Convert location name to coordinates
+        geo_url = "http://api.openweathermap.org/geo/1.0/direct"
+        geo_params = {
+            "q": location,
+            "limit": 1,
+            "appid": settings.WEATHER_API_KEY
+        }
+        geo_response = await client.get(geo_url, params=geo_params)
+        geo_data = geo_response.json()
+
+        if not geo_data:
+            raise HTTPException(
+                status_code=404,
+                detail=f"Location '{location}' not found. Try a nearby town or city name."
+            )
+
+        lat = geo_data[0]["lat"]
+        lon = geo_data[0]["lon"]
+        found_name = geo_data[0]["name"]
+        country = geo_data[0].get("country", "")
+        state = geo_data[0].get("state", "")
+
+        # Step 2 — Get weather using coordinates
+        weather_url = "https://api.openweathermap.org/data/2.5/weather"
+        weather_params = {
+            "lat": lat,
+            "lon": lon,
+            "appid": settings.WEATHER_API_KEY,
+            "units": "metric"
+        }
+        weather_response = await client.get(weather_url, params=weather_params)
+        data = weather_response.json()
+
         return {
-            "city": data["name"],
+            "searched": location,
+            "found_location": f"{found_name}, {state}, {country}",
+            "latitude": lat,
+            "longitude": lon,
             "temperature_c": data["main"]["temp"],
             "feels_like_c": data["main"]["feels_like"],
             "humidity_percent": data["main"]["humidity"],

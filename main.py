@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from app.database import engine, Base
-from app.routers import auth, farmers, crops, weather
+from app.routers import auth, farmers, crops, weather, marketplace
 import traceback
 
 app = FastAPI(
@@ -22,6 +22,7 @@ app.include_router(auth.router, prefix="/auth", tags=["Auth"])
 app.include_router(farmers.router, prefix="/farmers", tags=["Farmers"])
 app.include_router(crops.router, prefix="/crops", tags=["Crops"])
 app.include_router(weather.router, prefix="/weather", tags=["Weather"])
+app.include_router(marketplace.router, prefix="/marketplace", tags=["Marketplace"])
 
 @app.on_event("startup")
 async def startup():

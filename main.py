@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from app.database import engine, Base
-from app.routers import auth, farmers, crops
+from app.routers import auth, farmers, crops, weather
 import traceback
 
 app = FastAPI(
@@ -21,6 +21,7 @@ async def catch_exceptions(request: Request, call_next):
 app.include_router(auth.router, prefix="/auth", tags=["Auth"])
 app.include_router(farmers.router, prefix="/farmers", tags=["Farmers"])
 app.include_router(crops.router, prefix="/crops", tags=["Crops"])
+app.include_router(weather.router, prefix="/weather", tags=["Weather"])
 
 @app.on_event("startup")
 async def startup():

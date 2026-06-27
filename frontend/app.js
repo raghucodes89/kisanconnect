@@ -1,4 +1,4 @@
-const API = "http://127.0.0.1:8000";
+const API = "https://kisanconnect-production-1b79.up.railway.app";
 
 // WEATHER
 async function getWeather() {

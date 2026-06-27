@@ -8,6 +8,7 @@ from app.database import get_db
 from app.models.farmer import Farmer
 from app.config import settings
 from pydantic import BaseModel
+from fastapi.security import OAuth2PasswordRequestForm
 
 router = APIRouter()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -67,3 +68,12 @@ async def login(data: LoginSchema, db: AsyncSession = Depends(get_db)):
         raise HTTPException(status_code=401, detail="Invalid email or password")
     token = create_token({"sub": str(farmer.id), "email": farmer.email})
     return {"access_token": token, "token_type": "bearer"}
+
+@router.post("/token")
+async def token(form_data: OAuth2PasswordRequestForm = Depends(), db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(Farmer).where(Farmer.email == form_data.username))
+    farmer = result.scalars().first()
+    if not farmer or not verify_password(form_data.password, farmer.password):
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+    access_token = create_token({"sub": str(farmer.id), "email": farmer.email})
+    return {"access_token": access_token, "token_type": "bearer"}

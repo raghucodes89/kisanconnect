@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KisanConnect — AgriTech for Indian Farmers</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">🌾 KisanConnect</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#marketplace">Marketplace</a>
+            <a href="#weather">Weather</a>
+            <a href="#register">Register</a>
+            <a href="#login">Login</a>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>🌾 KisanConnect</h1>
+        <p>Connecting Indian Farmers to Markets, Weather & Buyers</p>
+        <div class="hero-buttons">
+            <a href="#register" class="btn-green">Register as Farmer</a>
+            <a href="#marketplace" class="btn-outline">Browse Crops</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature-card">
+            <h3>🌦️ Weather Advisory</h3>
+            <p>Get real-time weather and farming advice for your village</p>
+        </div>
+        <div class="feature-card">
+            <h3>🛒 Marketplace</h3>
+            <p>Buyers browse and purchase crops directly from farmers</p>
+        </div>
+        <div class="feature-card">
+            <h3>🔒 Secure Login</h3>
+            <p>JWT protected accounts for every farmer</p>
+        </div>
+        <div class="feature-card">
+            <h3>🌱 Crop Management</h3>
+            <p>List your crops with price, quantity and quality grade</p>
+        </div>
+    </section>
+
+    <section id="weather" class="section">
+        <h2>🌦️ Weather Advisory</h2>
+        <p>Enter your city to get weather and farming advice</p>
+        <div class="input-group">
+            <input type="text" id="cityInput" placeholder="Enter city name (e.g. Hyderabad)">
+            <button onclick="getWeather()">Check Weather</button>
+        </div>
+        <div id="weatherResult" class="result-box"></div>
+    </section>
+
+    <section id="marketplace" class="section">
+        <h2>🛒 Crop Marketplace</h2>
+        <p>Browse crops available from farmers across India</p>
+        <div class="input-group">
+            <input type="text" id="searchInput" placeholder="Search crops (e.g. Tomato)">
+            <button onclick="searchCrops()">Search</button>
+            <button onclick="loadCrops()">Show All</button>
+        </div>
+        <div id="cropsResult" class="crops-grid"></div>
+    </section>
+
+    <section id="register" class="section">
+        <h2>🌾 Register as Farmer</h2>
+        <div class="form-box">
+            <input type="text" id="regName" placeholder="Full Name">
+            <input type="text" id="regPhone" placeholder="Phone Number">
+            <input type="email" id="regEmail" placeholder="Email">
+            <input type="password" id="regPassword" placeholder="Password">
+            <input type="text" id="regVillage" placeholder="Village">
+            <input type="text" id="regDistrict" placeholder="District">
+            <input type="text" id="regState" placeholder="State" value="Andhra Pradesh">
+            <input type="number" id="regLand" placeholder="Land in Acres">
+            <button onclick="registerFarmer()">Register</button>
+            <div id="registerResult"></div>
+        </div>
+    </section>
+
+    <section id="login" class="section">
+        <h2>🔒 Farmer Login</h2>
+        <div class="form-box">
+            <input type="email" id="loginEmail" placeholder="Email">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <button onclick="loginFarmer()">Login</button>
+            <div id="loginResult"></div>
+        </div>
+    </section>
+
+    <footer>
+        <p>🌾 KisanConnect — Built with ❤️ for Indian Farmers</p>
+        <p>Powered by FastAPI + PostgreSQL</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

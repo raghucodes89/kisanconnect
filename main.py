@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
-from app.routers import auth, farmers, crops, weather, marketplace
+from app.routers import auth, farmers, crops, weather, marketplace, labour
 import traceback
 
 app = FastAPI(
@@ -32,6 +32,7 @@ app.include_router(farmers.router, prefix="/farmers", tags=["Farmers"])
 app.include_router(crops.router, prefix="/crops", tags=["Crops"])
 app.include_router(weather.router, prefix="/weather", tags=["Weather"])
 app.include_router(marketplace.router, prefix="/marketplace", tags=["Marketplace"])
+app.include_router(labour.router, prefix="/labour", tags=["Labour"])
 
 @app.on_event("startup")
 async def startup():
@@ -41,9 +42,3 @@ async def startup():
 @app.get("/")
 async def root():
     return {"message": "Welcome to KisanConnect API"}
-
-if __name__ == "__main__":
-    import uvicorn
-    import os
-    port = int(os.environ.get("PORT", 8000))
-    uvicorn.run("main:app", host="0.0.0.0", port=port)

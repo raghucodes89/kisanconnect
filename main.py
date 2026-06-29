@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
-from app.routers import auth, farmers, crops, weather, marketplace, labour, transport
+from app.routers import auth, farmers, crops, weather, marketplace, labour, transport, buyer
 import traceback
 
 app = FastAPI(
@@ -34,6 +34,7 @@ app.include_router(weather.router, prefix="/weather", tags=["Weather"])
 app.include_router(marketplace.router, prefix="/marketplace", tags=["Marketplace"])
 app.include_router(labour.router, prefix="/labour", tags=["Labour"])
 app.include_router(transport.router, prefix="/transport", tags=["Transport"])
+app.include_router(buyer.router, prefix="/buyers", tags=["Buyers"])
 
 @app.on_event("startup")
 async def startup():

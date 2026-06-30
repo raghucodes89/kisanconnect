@@ -11,10 +11,11 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# CORS must be added BEFORE any other middleware or routes
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -22,7 +23,8 @@ app.add_middleware(
 @app.middleware("http")
 async def catch_exceptions(request: Request, call_next):
     try:
-        return await call_next(request)
+        response = await call_next(request)
+        return response
     except Exception as e:
         traceback.print_exc()
         return JSONResponse(status_code=500, content={"error": str(e)})
